@@ -17,9 +17,7 @@ class RushBuilder : public BLBuilder
 
             techTree = reader.read_csv_file("unit_db.csv");
             targetUnit = findUnit(unit);
-            //cout<<targetUnit->id;
             race = (targetUnit->race).substr(0, 4);
-            //cout<<"This"<<r<<"::"<<endl;
             tTimeLimit = timeLimit;
             GetElligibleUnits(targetUnit);
              for(unsigned int i = 0; i < elligible_Units.size(); i++){
@@ -40,18 +38,7 @@ class RushBuilder : public BLBuilder
 
             }
             elligible_Units.erase(elligible_Units.begin());
-            //cout<<elligible_Units.size()<<endl;
-
-            //generate_buildlists(5000,0.2,5);
-             //for(unsigned int i = 0;i<elligible_Units.size();i++){
-              // cout<<elligible_Units[i]->id<<endl;
-            //}
-            //cout<<"Runs"<<endl;
-            //check_dry_validity();
-            //cout<<buildLists.size()<<endl;
-            //get_best_buildlist();
-           // cout<<buildLists.size()<<endl;
-            //cout<<"Runs"<<endl;
+            
             print_buildlist();
 
         }
@@ -68,61 +55,44 @@ class RushBuilder : public BLBuilder
 
             srand (time(NULL));
 
-            //for(int j = 0;j<nrTUnits;j++){
-
-            //        elligible_Units.push_back(targetUnit);
-            //}
-
-
-
             for(int i = 0 ; i< iterations;++i){
                 // random number of units
-                //cout<<"BuildList Nr : "<<i<<endl;
-               // targetUnitCreated = 0;
+               
                 int nr_Units = rand() % range + (int)range*alpha;
                 for(int j = 0; j<nr_Units;j++){
                     //select a random unit
 
                     int unit_nr = rand() % elligible_Units.size();
-                    //cout<<elligible_Units[unit_nr]->id<<endl;
+                    
                     local_buildList.push_back(elligible_Units[unit_nr]);
-                    //if((elligible_Units[unit_nr]->id).compare(targetUnit->id)==0){
-                    //    targetUnitCreated++;
-                    //}
+                    
 
                 }
 
                 int d = rand()%(tTimeLimit/100) +1;
-                //cout<<"Runs"<<d<<endl;
-                //if(d>0){
+                
                 for(int j = 0;j<d;j++){
-                        //cout<<"Runs"<<targetUnitCreated<<endl;
+                        
                    local_buildList.push_back(targetUnit);
                 }
-                //
+               
 
 
                 buildLists.push_back(local_buildList);
                 local_buildList.clear();
 
             }
-            //cout<<buildLists.size()<<endl;
-            //for(int i=0;i<buildLists[0].size();i++)
-             //   cout<<buildLists[0][i]->id<<endl;
 //
         }
 
         void get_best_buildlist(){
-            //cout<<"This"<<(targetUnit->race).substr(0, 3)<<"::"<<endl;
-            //(targetUnit->race).substr(0, 3);
-            //cout<<buildLists.size()<<endl;
+            
             if( race.compare("Terr") == 0){
                     for(unsigned int i = 0; i<buildLists.size();i++){
                         TerranSimulator terr(buildLists[i],targetUnit->id);
                         pair<int,int> p;
                         p.first = terr.time_step;
                         p.second = terr.nr_targetUnit;
-                        //cout<<p.first <<":"<<p.second <<endl;
                         performance.push_back(p);
                     }
             }
@@ -133,14 +103,12 @@ class RushBuilder : public BLBuilder
                         pair<int,int> p;
                         p.first = pro.time_step;
                         p.second = pro.nr_targetUnit;
-                       // cout<<p.first <<":"<<p.second <<endl;
                         performance.push_back(p);
                     }
             }
 
             int maxUnits = 0;
             int time =0;
-           // cout<<"Build List Size: "<<buildLists.size()<<endl;
 
             for(unsigned int i = 0; i<performance.size();++i){
                 if(performance[i].first != tTimeLimit){
@@ -161,7 +129,6 @@ class RushBuilder : public BLBuilder
 
                 }
             }
-            //cout<<"index: "<<index<<" time: "<<time <<" units: "<<maxUnits<<endl;
 
         }
 
@@ -170,15 +137,9 @@ class RushBuilder : public BLBuilder
 	        start = std::chrono::system_clock::now( );
 
             int elapsed;
-           // int rangeNr = 2;
-            //int iterations = 1000;
 
             while(index == -1){
 
-
-                //iterations*=2;
-                //rangeNr = rand() % 10 +1;
-                //cout<<"Iter: "<< rangeNr<<endl;
                 int ran = rand() % 8 + 2 ;
                 generate_buildlists(1000,0.2,ran);
                 check_dry_validity();
@@ -192,7 +153,6 @@ class RushBuilder : public BLBuilder
                     exit(EXIT_SUCCESS);
                 }
             }
-            //simulate the best build list
             if(race.compare("Terr") == 0){
                 TerranSimulator terr(buildLists[index],targetUnit->id);
                 terr.writer.file_writer.buildListValid = 1;

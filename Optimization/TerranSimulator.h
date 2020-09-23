@@ -24,9 +24,9 @@ class TerranSimulator : public Simulator
                 Struct worker(findUnit("SCV"));
                 finished.push_back(worker);
             }
-            // run and write messasges
+            
             run();
-           // writer.print_mesages();
+           
         }
 
 

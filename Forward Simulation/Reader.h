@@ -134,24 +134,7 @@ class Reader
             file_.close();
             return playerVector;
         }
-        /*
-        vector<Unit*> read_list(string listName, vector<Unit> techTree){
-
-                ifstream inFile;
-                inFile.open(listName);
-                string str;
-                while (std::getline(inFile, str)) {
-                    for(int i = 0; i <=techTree.size();i++){
-                        if(str.compare(techTree[i].id) != 0)
-                        cout<<"Okay";
-                    }
-                    
-                }
-                
-                inFile.close();
-
-        }
-        */
+       
         vector<Unit*> read_list(string listName,vector<Unit> techTree){
             
             ifstream inFile;

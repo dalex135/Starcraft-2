@@ -14,7 +14,5 @@ int main()
 {
    Simulator s;
    s.techTree = s.reader.read_csv_file("unit_db.txt");
-   pair <string,string> product("tttttt","apples");
-   vector<pair <string,string>> vec{product};
-   s.writer.add_events(0, 0, 0, 0 , 0, 0, 0, vec);
+   s.run();
 }

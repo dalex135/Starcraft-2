@@ -30,19 +30,3 @@ int main(int argc, char *argv[])
    return 0 ;
 
 }
-
-
-
-/*
-int main(){
-   // RushBuilder rush("Zealot",360); //works
-    // RushBuilder rush("Marine",360);//works
-    //RushBuilder rush ("Marauder" ,400);//somtimes work
-   // RushBuilder  rush ("Stalker", 360);
-   // PushBuilder push ("SiegeTank",6);
-    // PushBuilder push("Battlecruiser",1); //not working
-     // PushBuilder push ("Colossus", 3);
-     //PushBuilder push ("VoidRay", 1);
-
-}
- */
